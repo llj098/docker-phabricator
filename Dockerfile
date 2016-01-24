@@ -76,7 +76,4 @@ ADD sshd_config.phabricator /etc/phabricator-ssh/
 ADD phabricator-ssh-hook.sh /etc/phabricator-ssh/
 RUN chown root:root /etc/phabricator-ssh/*
 
-# Start phabricator ssh
-RUN /usr/sbin/sshd -f /etc/phabricator-ssh/sshd_config.phabricator
-
 CMD ./startup.sh && supervisord
