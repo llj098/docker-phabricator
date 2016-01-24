@@ -3,6 +3,8 @@ FROM offbyone/supervisord:1.1.0
 MAINTAINER Craig Kimerer <craig@offxone.com>
 
 # Install requirements
+RUN rm /etc/apt/sources.list
+ADD sources.list /etc/apt
 RUN apt-get update && apt-get upgrade -y
 RUN apt-get install -y ssh wget vim less zip cron lsof git sendmail nodejs-legacy npm python-pygments
 RUN npm install ws
@@ -69,8 +71,8 @@ RUN mkdir -p /var/repo/
 RUN chown phab-daemon:2000 /var/repo/
 
 # Configure Phabricator SSH service
-RUN mkdir /etc/phabricator-ssh
-RUN mkdir /var/run/sshd/
+RUN mkdir -p /etc/phabricator-ssh
+RUN mkdir -p /var/run/sshd/
 RUN chmod 0755 /var/run/sshd
 ADD sshd_config.phabricator /etc/phabricator-ssh/
 ADD phabricator-ssh-hook.sh /etc/phabricator-ssh/
