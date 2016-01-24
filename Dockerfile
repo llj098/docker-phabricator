@@ -17,9 +17,9 @@ RUN mkdir /srv/phabricator
 RUN chown git:wwwgrp-phabricator /srv/phabricator
 USER git
 WORKDIR /srv/phabricator
-RUN git clone git://github.com/facebook/libphutil.git
-RUN git clone git://github.com/facebook/arcanist.git
-RUN git clone git://github.com/facebook/phabricator.git
+RUN git clone -b stable git://github.com/facebook/libphutil.git
+RUN git clone -b stable git://github.com/facebook/arcanist.git
+RUN git clone -b stable git://github.com/facebook/phabricator.git
 USER root
 WORKDIR /
 
